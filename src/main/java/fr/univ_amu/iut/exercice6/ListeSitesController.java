@@ -20,8 +20,8 @@ public class ListeSitesController {
   private int compteurDemo = 0;
 
   /**
-   * Ajoute une carte de site dans la liste avec des données démonstratives qui varient à chaque
-   * appel (numéro de carré incrémenté, nombre de jours, nombre de points...).
+   * Ajoute une de carte dans la liste avec des données démonstratives qui varient à chaque appel
+   * (numéro de carré incrémenté, nombre de jours, nombre de points...).
    *
    * @return le nombre total de cartes après ajout
    */
@@ -29,18 +29,33 @@ public class ListeSitesController {
     // TODO exercice 6 : ajouter une nouvelle SiteCarte au VBox `conteneurCartes`.
     //
     // 1. Incrémenter compteurDemo (1, 2, 3, ...).
+    compteurDemo += 1;
     // 2. Construire une SiteCarte et alimenter ses propriétés :
-    //      - numéro de carré : "Carré " + (640000 + compteurDemo) (format à 6 chiffres garanti
-    //        par la base 640000)
-    //      - nom convivial : "📍 Site de démonstration #" + compteurDemo
-    //      - nombre de points : (compteurDemo % 3) + 1
-    //      - nombre de passages : compteurDemo * 2
-    //      - jours depuis dernier passage : compteurDemo * 4 (0 -> 4 -> 8 -> 12 -> 16 -> ...)
-    //        ce qui fait passer les badges du frais à l'orange puis au gris au fil des ajouts.
-    // 3. Ajouter la carte au début (index 0) du VBox pour que les nouveaux sites apparaissent en
-    //    haut, comme dans un flux d'activité.
+    // - numéro de carré : "Carré " + (640000 + compteurDemo) (format à 6 chiffres
+    // garanti
+    // par la base 640000)
+    // - nom convivial : "📍 Site de démonstration #" + compteurDemo
+    // - nombre de points : (compteurDemo % 3) + 1
+    // - nombre de passages : compteurDemo * 2
+    // - jours depuis dernier passage : compteurDemo * 4 (0 -> 4 -> 8 -> 12 -> 16 ->
+    // ...)
+    // ce qui fait passer les badges du frais à l'orange puis au gris au fil des
+    // ajouts.
+    SiteCarte carte = new SiteCarte();
+    carte.setNumeroCarre("Carré " + (640000 + compteurDemo));
+    carte.setNomConvivial("📍 carte de démonstration #" + compteurDemo);
+    carte.setNombrePoints((compteurDemo % 3) + 1);
+    carte.setNombrePassages(compteurDemo * 0);
+    carte.setJoursDepuisDernierPassage(compteurDemo * 4);
+
+    // 3. Ajouter la au début (index 0) du VBox pour que les nouveaux sites
+    // apparaissent en
+    // haut, comme dans un flux d'activité.
+    conteneurCartes.getChildren().add(0, carte);
+
     // 4. Retourner conteneurCartes.getChildren().size().
     int total = 0;
+    total = conteneurCartes.getChildren().size();
     return total;
   }
 
